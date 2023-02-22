@@ -1,0 +1,64 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin:0;
+}
+header {
+    border-bottom: 5px solid;
+    border-image: linear-gradient(90deg, rgb(232,59,64) 10%, rgb(58,160,110) 20%, rgb(232,59,64) 30%, rgb(58,160,110) 40%, rgb(232,59,64) 50%, rgb(58,160,110) 60%, rgb(232,59,64) 70%, rgb(58,160,110) 80%, rgb(232,59,64) 90%, rgb(58,160,110) 100% ) 1;
+}
+.icon {
+    width: 10rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+}
+.footer {
+    background: linear-gradient(90deg, rgba(58,160,110,1) 0%, rgba(2,75,92,1) 100%);
+    text-decoration: none;
+    color:white;
+}
+    .footer a {
+        text-decoration: none;
+        color: white;
+    }
+.main-container{
+    text-align:center
+}
+input {
+    margin-top: 10px;
+    border: 2px solid;
+    border-color: rgba(58,160,110,1);
+    background-color: white;
+    border-radius: 5px;
+    width: 65%;
+}
+    input:hover {
+        background-color: #eee;
+        border-color: rgb(34,123,103);
+    }
+textarea {
+    border: 2px solid;
+    border-color: rgba(58,160,110,1);
+    background-color: white;
+    border-radius: 5px;
+}
+.textarea {
+    margin-top: 10px;
+}
+.output {
+    width:150px;
+    height:300px;
+}

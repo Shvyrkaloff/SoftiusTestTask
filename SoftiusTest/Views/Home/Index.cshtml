@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "SoftiusTestTask";
+}
+<form method="post">
+<div class="main-container">
+    <div class="row">
+        <div class="col right-col">
+                <h3><label>Входные данные:</label></h3>
+                @Html.TextArea("data", "4\n\n3\n1 10\n5 10\n100 7\n\n2\n1 10000\n2 10000\n\n1\n1000000 10000\n\n7\n5 7\n6 1\n7 4\n20 1\n21 5\n22 2\n29 2", 22,25,null)
+        </div>
+        <div class="col left-col">
+            <h3>Выходные данные:</h3>
+            @if (ViewBag.Answer != null)
+            @foreach (var row in ViewBag.Answer) 
+            {
+                <div>
+                    @foreach (var value in row) 
+                    {
+                        <span>@value</span>
+                    }
+                </div>
+            }
+            @ViewBag.Error
+        </div>
+    </div>
+    <div class="mainButton">
+        <p>
+            <input type="submit" value="Вычислить" />
+        </p>
+    </div>
+</div>
+</form>
