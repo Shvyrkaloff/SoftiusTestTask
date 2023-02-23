@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoftiusTest.Models;
 using System.Diagnostics;
-
 namespace SoftiusTest.Controllers
 {
     /// <summary>Class HomeController.
@@ -30,6 +29,11 @@ namespace SoftiusTest.Controllers
         {
             try 
             {
+                if (data == null)
+                {
+                    ViewBag.Error = "Поле входных данных не заполнено.";
+                    return View();
+                }
                 string[] lines = data.Split('\n');
                 InputData(lines);
                 Solutions();
@@ -64,8 +68,19 @@ namespace SoftiusTest.Controllers
                             for (int j = 0; j < x; j++)
                             {
                                 string[] values = lines[currentLine++].Split(' ');
-                                array[j, 0] = int.Parse(values[0]);
-                                array[j, 1] = int.Parse(values[1]);
+                                int valD = int.Parse(values[1]);
+                                int valT = int.Parse(values[0]);
+                                if (valD >= 1 && valD <= 10000 && valT >= 1 && valT <= 1000000) // прверка на соответсвие диапазону t и d
+                                {
+                                    array[j, 0] = int.Parse(values[0]);
+                                    array[j, 1] = int.Parse(values[1]);
+                                }
+                                else
+                                {
+                                    arrays.Clear();
+                                    ViewBag.Error = "В строке №" + currentLine + " введены числа, которые не соответствуют заданию.";
+                                    return;
+                                }
                             }
                             arrays.Add(array);
                             if (currentLine < lines.Length && string.IsNullOrWhiteSpace(lines[currentLine])) // обработка пустой строки, разделение массивов
@@ -124,11 +139,15 @@ namespace SoftiusTest.Controllers
                 answers.Add(rowValues.ToArray()); // добавление ответа в зубчатый массив
             }
         }
+        /// <summary>Privacies this instance.</summary>
+        /// <returns>IActionResult.</returns>
         public IActionResult Privacy()
         {
             return View();
         }
 
+        /// <summary>Errors this instance.</summary>
+        /// <returns>IActionResult.</returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
